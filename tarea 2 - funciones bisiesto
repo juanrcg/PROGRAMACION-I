@@ -1,0 +1,30 @@
+using System;
+
+
+namespace class002
+{
+    class Program
+    {
+
+
+        private static void Main(string[] args){
+
+           Console.WriteLine(Bisiesto(int.Parse(Console.ReadLine())));
+            
+        
+            
+        }
+
+        static string Bisiesto(int years)
+        {
+            int yr = years;
+            
+            if (yr % 4 == 0){
+
+                return "Es bisiesto";
+            }
+            else 
+            return "No Es bisiesto";
+        }
+    }
+}
