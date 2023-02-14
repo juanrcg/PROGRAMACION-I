@@ -1,0 +1,46 @@
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        int[] numeros = new int[10];
+        int contadorNumerosPrimos = 0;
+        
+        for (int i = 0; i < 10; i++) {
+            Console.Write($"Ingrese el número {i + 1}: ");
+            numeros[i] = int.Parse(Console.ReadLine());
+            
+            if (ComienzaConDigitoPrimo(numeros[i])) {
+                contadorNumerosPrimos++;
+            }
+        }
+        
+        Console.WriteLine($"Hay {contadorNumerosPrimos} números en el arreglo que comienzan con un dígito primo.");
+    }
+    
+    static bool ComienzaConDigitoPrimo(int numero) {
+        if (numero < 0) {
+            numero = -numero; // Si el número es negativo, lo hacemos positivo para verificar su primer dígito.
+        }
+        
+        int primerDigito = numero;
+        while (primerDigito >= 10) {
+            primerDigito /= 10;
+        }
+        
+        return EsPrimo(primerDigito);
+    }
+    
+    static bool EsPrimo(int numero) {
+        if (numero < 2) {
+            return false;
+        }
+        
+        for (int i = 2; i <= Math.Sqrt(numero); i++) {
+            if (numero % i == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
