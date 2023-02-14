@@ -1,0 +1,20 @@
+int[] numeros = new int[10];
+int[] factoriales = new int[10];
+
+// Leer los 10 números del usuario y almacenarlos en el arreglo
+
+for (int i = 0; i < 10; i++) {
+    int factorial = 1;
+    
+    for (int j = 1; j <= numeros[i]; j++) {
+        factorial *= j;
+    }
+    
+    factoriales[i] = factorial;
+}
+
+// Imprimir los resultados
+
+for (int i = 0; i < 10; i++) {
+    Console.WriteLine($"El factorial de {numeros[i]} es {factoriales[i]}");
+}
