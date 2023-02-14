@@ -1,0 +1,18 @@
+int[] numeros = new int[10];
+
+// Leer los 10 números del usuario y almacenarlos en el arreglo
+
+int numero = 0;
+// Leer el número para el que se quieren contar los divisores
+Console.WriteLine("Ingrese un número: ");
+numero = Convert.ToInt32(Console.ReadLine());
+
+int cantidadDivisores = 0;
+
+for (int i = 0; i < 10; i++) {
+    if (numero % numeros[i] == 0) {
+        cantidadDivisores++;
+    }
+}
+
+Console.WriteLine($"El número {numero} tiene {cantidadDivisores} divisores exactos en el arreglo");
