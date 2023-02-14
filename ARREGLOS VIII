@@ -1,0 +1,13 @@
+int[] numeros = new int[10];
+
+// Leer los 10 números del usuario y almacenarlos en el arreglo
+
+int cantidadNegativos = 0;
+
+for (int i = 0; i < 10; i++) {
+    if (numeros[i] < 0) {
+        cantidadNegativos++;
+    }
+}
+
+Console.WriteLine($"Hay {cantidadNegativos} números negativos en el arreglo");
