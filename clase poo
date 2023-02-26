@@ -1,0 +1,129 @@
+using System;
+
+class Motor
+{
+    private int litros_de_aceite;
+    private int potencia;
+
+    public Motor(int potencia)
+    {
+        this.potencia = potencia;
+        this.litros_de_aceite = 0;
+    }
+
+    public int GetLitrosDeAceite()
+    {
+        return this.litros_de_aceite;
+    }
+
+    public void SetLitrosDeAceite(int litros_de_aceite)
+    {
+        this.litros_de_aceite = litros_de_aceite;
+    }
+
+    public int GetPotencia()
+    {
+        return this.potencia;
+    }
+
+    public void SetPotencia(int potencia)
+    {
+        this.potencia = potencia;
+    }
+}
+
+class Coche
+{
+    private Motor motor;
+    private string marca;
+    private string modelo;
+    private double precio_acumulado_averias;
+
+    public Coche(string marca, string modelo)
+    {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.motor = new Motor(100);
+        this.precio_acumulado_averias = 0.0;
+    }
+
+    public Motor GetMotor()
+    {
+        return this.motor;
+    }
+
+    public string GetMarca()
+    {
+        return this.marca;
+    }
+
+    public string GetModelo()
+    {
+        return this.modelo;
+    }
+
+    public double GetPrecioAcumuladoAverias()
+    {
+        return this.precio_acumulado_averias;
+    }
+
+    public void AcumularAveria(double importe)
+    {
+        this.precio_acumulado_averias += importe;
+        if (importe > 0 && this.motor.GetLitrosDeAceite() > 0)
+        {
+            this.motor.SetLitrosDeAceite(this.motor.GetLitrosDeAceite() + 10);
+        }
+    }
+}
+
+class Garaje
+{
+    private Coche coche;
+    private string averia_asociada;
+    private int num_coches_atendidos;
+
+    public Garaje()
+    {
+        this.coche = null;
+        this.averia_asociada = "";
+        this.num_coches_atendidos = 0;
+    }
+
+    public bool AceptarCoche(Coche coche, string averia_asociada)
+    {
+        if (this.coche != null)
+        {
+            return false;
+        }
+        else
+        {
+            this.coche = coche;
+            this.averia_asociada = averia_asociada;
+            this.num_coches_atendidos++;
+            return true;
+        }
+    }
+
+    public void DevolverCoche()
+    {
+        this.coche = null;
+        this.averia_asociada = "";
+    }
+}
+
+class PracticaPOO
+{
+    static void Main(string[] args)
+    {
+        Garaje garaje = new Garaje();
+        Coche coche1 = new Coche("Renault", "Clio");
+        Coche coche2 = new Coche("Ford", "Focus");
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (garaje.AceptarCoche(coche1, "aceite"))
+            {
+                Console.WriteLine("Coche 1 en el garaje");
+                coche1.AcumularAveria(Math.Round(new Random().NextDouble() * 100, 2));
+                Console.WriteLine("Precio acumulado
